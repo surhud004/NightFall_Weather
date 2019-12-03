@@ -1,0 +1,146 @@
+<%- include("partials/homeheader.ejs"); -%>
+<%- include("script.ejs") -%>
+<%- include("search.ejs"); -%>
+<div class="jumbotron jumbotron-fluid d-flex align-items-center mx-auto my-5 py-4">
+<% if (locals.continentData === "Asia") { %>
+	<div class="container text-center" style="background-image: url(assets/asia.png);">
+<% } else if (locals.continentData === "Antarctica") { %>
+	<div class="container text-center" style="background-image: url(assets/antarctica.png);">
+<% } else if (locals.continentData === "Africa") { %>
+	<div class="container text-center" style="background-image: url(assets/africa.png);">
+<% } else if (locals.continentData === "Europe") { %>
+	<div class="container text-center" style="background-image: url(assets/europe.png);">
+<% } else if (locals.continentData === "North America") { %>
+	<div class="container text-center" style="background-image: url(assets/northamerica.png);">
+<% } else if (locals.continentData === "Oceania") { %>
+	<div class="container text-center" style="background-image: url(assets/oceania.png);">
+<% } else if (locals.continentData === "South America") { %>
+	<div class="container text-center" style="background-image: url(assets/southamerica.png);">
+<% } else { %>
+	<div class="container text-center">
+<% } %>
+  	<div class="row py-2 align-items-center">
+  		<div class="col">
+  			<h1 class="display-1">
+  				<% if (locals.wData.main.temp) { %>
+				<strong><%= wData.main.temp %>&nbsp;&deg;</strong>
+				<% } %>
+			</h1>
+  		</div>
+  		<div class="col">
+  			<h1 class="display-4">
+  				<% if (locals.wData.name && locals.wData.sys.country) { %>
+				<strong><%= wData.name %>, <%= wData.sys.country %></strong>
+				<% } %>
+  			</h1>
+  		</div>
+  	</div>
+  	<div class="row py-2 align-items-center">
+		<div class="col">
+			<h2 class="text-uppercase">
+				<% if (locals.wData.weather[0].main) { %>
+				<strong><%= wData.weather[0].main %></strong>
+				<% } %>
+			</h2>
+			<h3 class="text-capitalize font-weight-lighter">
+				<% if (locals.wData.weather[0].description) { %>
+				<%= wData.weather[0].description %>
+				<% } %>
+			</h3>
+		</div>
+		<div class="col">
+			<% if (locals.wData.weather[0].main === "Clear") { %>
+				<img class="img-fluid wImg" src="assets/clear.png">
+			<% } else if(locals.wData.weather[0].main === "Clouds") { %>
+				<img class="img-fluid wImg" src="assets/cloudy.png">
+			<% } else if(locals.wData.weather[0].main === "Drizzle") { %>
+				<img class="img-fluid wImg" src="assets/drizzle.png">
+			<% } else if(locals.wData.weather[0].main === "Rain") { %>
+				<img class="img-fluid wImg" src="assets/rain.png">
+			<% } else if(locals.wData.weather[0].main === "Snow") { %>
+				<img class="img-fluid wImg" src="assets/snow.png">
+			<% } else if(locals.wData.weather[0].main === "Thunderstorm") { %>
+				<img class="img-fluid wImg" src="assets/thunderstorm.png">
+			<% } else { %>
+				<img class="img-fluid wImg" src="assets/tornado.png">
+			<% } %>
+		</div>
+  	</div>
+  	<div class="row py-2 align-items-center">
+  		<div class="col-md-8 col-lg-6">
+  			<div class="row">
+  				<div class="col border-right spacing">
+		  			<h4>
+		  				<% if (locals.wData.main.humidity) { %>
+		  				<span class="font-weight-lighter">HUMIDITY</span><br>		  				
+						<span class="font-weight-light"><%= wData.main.humidity %>&nbsp;&percnt;</span>
+						<% } %>
+		  			</h4>
+		  		</div>
+		  		<div class="col spacing">
+		  			<h4>
+		  				<% if (locals.wData.wind.speed) { %>
+		  				<span class="font-weight-lighter">WIND</span><br>
+						<span class="font-weight-light"><%= wData.wind.speed %></span><small>&nbsp;M/S</small><br>
+						<% } %>
+						<% if(locals.wData.wind.deg >= 0 && locals.wData.wind.deg <= 90) { %>
+							<span class="wdir font-weight-lighter">NORTH-EAST</span>
+						<% } else if(locals.wData.wind.deg > 90 && locals.wData.wind.deg <= 180) { %>
+							<span class="wdir font-weight-lighter">SOUTH-EAST</span>
+						<% } else if(locals.wData.wind.deg > 180 && locals.wData.wind.deg <= 270) { %>
+							<span class="wdir font-weight-lighter">SOUTH-WEST</span>
+						<% } else if(locals.wData.wind.deg > 270 && locals.wData.wind.deg <= 360) { %>
+							<span class="wdir font-weight-lighter">NORTH-WEST</span>
+						<% } %>
+		  			</h4>
+		  		</div>
+  			</div>
+  		</div>
+
+  		<div class="col">
+			<div class="row">
+				<div class="col spacing">
+		  			<h4>
+		  				<% if (locals.wData.rain) { %>
+		  					<span class="font-weight-lighter">RAIN-FALL</span><br>
+		  					<% if (locals.wData.rain["1h"]) { %>
+								<span class="font-weight-light"><%= wData.rain["1h"] %></span><small>&nbsp;MM</small>
+							<% } else { %>
+								<span class="font-weight-light"><%= wData.rain["3h"] %></span><small>&nbsp;MM</small>
+							<% } %>
+						<% } else if (locals.wData.snow) { %>
+		  					<span class="font-weight-lighter">SNOW-FALL</span><br>
+							<% if (locals.wData.snow["1h"]) { %>
+								<span class="font-weight-light"><%= wData.snow["1h"] %></span><small>&nbsp;MM</small>
+							<% } else { %>
+								<span class="font-weight-light"><%= wData.snow["3h"] %></span><small>&nbsp;MM</small>
+							<% } %>
+						<% } %>
+		  			</h4>
+	  			</div>
+	  		</div>
+  			<div class="row">
+  				<div class="col spacing">
+	  				<h4>
+		  				<% if (locals.wData.visibility <= 1000) { %>
+		  					<span class="font-weight-lighter">VISIBILITY</span><br>		  				
+							<span class="font-weight-light">FOG</span>
+						<% } else if(locals.wData.visibility > 1000 && locals.wData.visibility <= 5000) { %>
+							<span class="font-weight-lighter">VISIBILITY</span><br>
+							<span class="font-weight-light">POOR</span>
+						<% } else if(locals.wData.visibility > 5000 && locals.wData.visibility <= 10000) { %>
+							<span class="font-weight-lighter">VISIBILITY</span><br>
+							<span class="font-weight-light">MODERATE</span>
+						<% } else if(locals.wData.visibility > 10000) { %>
+							<span class="font-weight-lighter">VISIBILITY</span><br>
+							<span class="font-weight-light">GOOD</span>
+						<% } %>
+  					</h4>
+	  			</div>
+  			</div>
+  		</div>
+
+	</div>
+  </div>
+</div>
+<%- include("partials/homefooter.ejs"); -%>

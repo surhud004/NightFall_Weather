@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-md navbar-dark justify-content-end">
+	<a class="navbar-brand font-weight-bold" href="/">
+		<img id="brandLogo" src="assets/logo.png" width="50" height="50" class="d-inline-block align-middle" alt="">
+		<span class="d-inline-block align-middle">NightFall</span>
+	</a>
+	<form class="form-inline ml-auto mr-1" action="/" method="POST">
+		<input class="form-control mr-sm-2" type="search" placeholder="City Name" aria-label="loc" name="location" autofocus>
+		<input class="form-control mr-sm-2" type="search" placeholder="Country Name (opt.)" aria-label="country" name="country">
+		<button class="btn myBtn my-2 my-sm-0" type="submit">Set</button>
+	</form>
+	<div class="collapse navbar-collapse flex-grow-0" id="navbarText">
+		<ul class="navbar-nav navbar-center">
+			<span class="navbar-text text-capitalize">
+	  			<% var currDate = setDate(); %>
+	  			<strong><%= currDate %></strong>
+			</span>
+		</ul>
+	</div>
+</nav>
