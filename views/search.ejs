@@ -11,8 +11,9 @@
 	<div class="collapse navbar-collapse flex-grow-0" id="navbarText">
 		<ul class="navbar-nav navbar-center">
 			<span class="navbar-text text-capitalize">
-	  			<% var currDate = setDate(); %>
-	  			<strong><%= currDate %></strong>
+				<% if (currdate) { %>
+	  				<strong><%= currdate %></strong>
+	  			<% } %>
 			</span>
 		</ul>
 	</div>

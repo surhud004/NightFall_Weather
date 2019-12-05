@@ -1,11 +1,16 @@
 var jsonfile = require('jsonfile');
 var bodyParser = require('body-parser');
 var request = require('request');
+var moment = require('moment');
 var express = require('express');
 var app = express();
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(function (req, res, next) {
+  res.locals.currdate = moment().format('dddd, MMMM D');
+  next();
+});
 app.set("view engine", "ejs");
 
 var port = process.env.PORT || 8080;

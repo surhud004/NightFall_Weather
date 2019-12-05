@@ -37,7 +37,7 @@
   	</div>
   	<div class="row py-2 align-items-center">
 		<div class="col">
-			<h2 class="text-uppercase">
+			<h2 id="desc" class="text-uppercase">
 				<% if (locals.wData.weather[0].main) { %>
 				<strong><%= wData.weather[0].main %></strong>
 				<% } %>
@@ -67,7 +67,7 @@
 		</div>
   	</div>
   	<div class="row py-2 align-items-center">
-  		<div class="col-md-8 col-lg-6">
+  		<div class="col-md-12 col-lg-6">
   			<div class="row">
   				<div class="col border-right spacing">
 		  			<h4>
@@ -84,13 +84,13 @@
 						<span class="font-weight-light"><%= wData.wind.speed %></span><small>&nbsp;M/S</small><br>
 						<% } %>
 						<% if(locals.wData.wind.deg >= 0 && locals.wData.wind.deg <= 90) { %>
-							<span class="wdir font-weight-lighter">NORTH-EAST</span>
+							<span class="thinfont font-weight-lighter">NORTH-EAST</span>
 						<% } else if(locals.wData.wind.deg > 90 && locals.wData.wind.deg <= 180) { %>
-							<span class="wdir font-weight-lighter">SOUTH-EAST</span>
+							<span class="thinfont font-weight-lighter">SOUTH-EAST</span>
 						<% } else if(locals.wData.wind.deg > 180 && locals.wData.wind.deg <= 270) { %>
-							<span class="wdir font-weight-lighter">SOUTH-WEST</span>
+							<span class="thinfont font-weight-lighter">SOUTH-WEST</span>
 						<% } else if(locals.wData.wind.deg > 270 && locals.wData.wind.deg <= 360) { %>
-							<span class="wdir font-weight-lighter">NORTH-WEST</span>
+							<span class="thinfont font-weight-lighter">NORTH-WEST</span>
 						<% } %>
 		  			</h4>
 		  		</div>
