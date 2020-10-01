@@ -122,7 +122,7 @@ app.post("/", function(req, res){
 		continentData = "";
 	}
 	var cityId = getCityIDName(data, newLocation, newCountry);
-	var url = "http://api.openweathermap.org/data/2.5/weather?id="+cityId+"&appid=3ff4f5e5055ff6b0cffd66d6e8809acd&units=metric";
+	var url = "http://api.openweathermap.org/data/2.5/weather?id="+cityId+"&appid=process.env.API_KEY&units=metric";
 	request(url, function(error, response, body){
 		if(!error && response.statusCode == 200) {
 			wData = JSON.parse(body);
